@@ -33,8 +33,10 @@ namespace SQL_AdreseDB_Practica
             this.inregistrareToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modificareToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stergereToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.adaugareToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.afisareToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.listaPersoaneToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.listaAdreseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.adaugarePersoaneToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.PanelInregistrare = new System.Windows.Forms.Panel();
             this.txtScara2 = new System.Windows.Forms.TextBox();
             this.txtBloc2 = new System.Windows.Forms.TextBox();
@@ -106,7 +108,8 @@ namespace SQL_AdreseDB_Practica
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.inregistrareToolStripMenuItem,
-            this.afisareToolStripMenuItem});
+            this.afisareToolStripMenuItem,
+            this.adaugarePersoaneToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1105, 28);
@@ -117,39 +120,54 @@ namespace SQL_AdreseDB_Practica
             // 
             this.inregistrareToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.modificareToolStripMenuItem,
-            this.stergereToolStripMenuItem,
-            this.adaugareToolStripMenuItem});
+            this.stergereToolStripMenuItem});
             this.inregistrareToolStripMenuItem.Name = "inregistrareToolStripMenuItem";
-            this.inregistrareToolStripMenuItem.Size = new System.Drawing.Size(94, 24);
-            this.inregistrareToolStripMenuItem.Text = "Inregistrari";
+            this.inregistrareToolStripMenuItem.Size = new System.Drawing.Size(130, 24);
+            this.inregistrareToolStripMenuItem.Text = "Gestionare Date";
             // 
             // modificareToolStripMenuItem
             // 
             this.modificareToolStripMenuItem.Name = "modificareToolStripMenuItem";
-            this.modificareToolStripMenuItem.Size = new System.Drawing.Size(164, 26);
-            this.modificareToolStripMenuItem.Text = "Modificare";
+            this.modificareToolStripMenuItem.Size = new System.Drawing.Size(211, 26);
+            this.modificareToolStripMenuItem.Text = "Modificare Date";
             this.modificareToolStripMenuItem.Click += new System.EventHandler(this.modificareToolStripMenuItem_Click);
             // 
             // stergereToolStripMenuItem
             // 
             this.stergereToolStripMenuItem.Name = "stergereToolStripMenuItem";
-            this.stergereToolStripMenuItem.Size = new System.Drawing.Size(164, 26);
-            this.stergereToolStripMenuItem.Text = "Stergere";
+            this.stergereToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.stergereToolStripMenuItem.Text = "Stergere Persoane";
             this.stergereToolStripMenuItem.Click += new System.EventHandler(this.stergereToolStripMenuItem_Click);
-            // 
-            // adaugareToolStripMenuItem
-            // 
-            this.adaugareToolStripMenuItem.Name = "adaugareToolStripMenuItem";
-            this.adaugareToolStripMenuItem.Size = new System.Drawing.Size(164, 26);
-            this.adaugareToolStripMenuItem.Text = "Adaugare";
-            this.adaugareToolStripMenuItem.Click += new System.EventHandler(this.adaugareToolStripMenuItem_Click);
             // 
             // afisareToolStripMenuItem
             // 
+            this.afisareToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.listaPersoaneToolStripMenuItem,
+            this.listaAdreseToolStripMenuItem});
             this.afisareToolStripMenuItem.Name = "afisareToolStripMenuItem";
-            this.afisareToolStripMenuItem.Size = new System.Drawing.Size(69, 24);
-            this.afisareToolStripMenuItem.Text = "Afisare";
-            this.afisareToolStripMenuItem.Click += new System.EventHandler(this.afisareToolStripMenuItem_Click);
+            this.afisareToolStripMenuItem.Size = new System.Drawing.Size(126, 24);
+            this.afisareToolStripMenuItem.Text = "Vizualizare liste";
+            // 
+            // listaPersoaneToolStripMenuItem
+            // 
+            this.listaPersoaneToolStripMenuItem.Name = "listaPersoaneToolStripMenuItem";
+            this.listaPersoaneToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.listaPersoaneToolStripMenuItem.Text = "Lista Persoane";
+            this.listaPersoaneToolStripMenuItem.Click += new System.EventHandler(this.listaPersoaneToolStripMenuItem_Click);
+            // 
+            // listaAdreseToolStripMenuItem
+            // 
+            this.listaAdreseToolStripMenuItem.Name = "listaAdreseToolStripMenuItem";
+            this.listaAdreseToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.listaAdreseToolStripMenuItem.Text = "Lista Adrese";
+            this.listaAdreseToolStripMenuItem.Click += new System.EventHandler(this.listaAdreseToolStripMenuItem_Click);
+            // 
+            // adaugarePersoaneToolStripMenuItem
+            // 
+            this.adaugarePersoaneToolStripMenuItem.Name = "adaugarePersoaneToolStripMenuItem";
+            this.adaugarePersoaneToolStripMenuItem.Size = new System.Drawing.Size(151, 24);
+            this.adaugarePersoaneToolStripMenuItem.Text = "Adaugare Persoane";
+            this.adaugarePersoaneToolStripMenuItem.Click += new System.EventHandler(this.adaugarePersoaneToolStripMenuItem_Click);
             // 
             // PanelInregistrare
             // 
@@ -768,7 +786,9 @@ namespace SQL_AdreseDB_Practica
         private System.Windows.Forms.TextBox txtJudet1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtMunicipiu1;
-        private System.Windows.Forms.ToolStripMenuItem adaugareToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem listaPersoaneToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem listaAdreseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem adaugarePersoaneToolStripMenuItem;
     }
 }
 

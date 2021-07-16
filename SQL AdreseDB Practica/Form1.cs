@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -15,6 +16,7 @@ namespace SQL_AdreseDB_Practica
     public partial class Home : Form
     {
         AdreseDBDataContext adreseContext;
+        private int IDAdresaNespecificata = -1;
         public Home()
         {
             InitializeComponent();
@@ -27,12 +29,13 @@ namespace SQL_AdreseDB_Practica
             return com;
         }
 
-        private string comandaAdrese()
-        {
-            string com = "SELECT * FROM AdreseTable";
-            return com;
+        private string comandaAdrese(int id)
+        { 
+            if(id != IDAdresaNespecificata)
+                return "SELECT * FROM AdreseTable WHERE IdPersoana = " + id;
+            else
+                return "SELECT * FROM AdreseTable";
         }
-
         private bool uniqueIdPersoana(int idc)
         {
             using (SqlConnection connection = new SqlConnection("Data Source=DESKTOP-DVF30NR\\SQLEXPRESS;Initial Catalog=AdreseDB;Integrated Security=True"))
@@ -55,7 +58,7 @@ namespace SQL_AdreseDB_Practica
             using (SqlConnection connection = new SqlConnection("Data Source=DESKTOP-DVF30NR\\SQLEXPRESS;Initial Catalog=AdreseDB;Integrated Security=True"))
             {
                 connection.Open();
-                SqlDataAdapter sqlData = new SqlDataAdapter(comandaAdrese(), connection);
+                SqlDataAdapter sqlData = new SqlDataAdapter(comandaAdrese(IDAdresaNespecificata), connection);
                 DataTable dataTable = new DataTable();
                 sqlData.Fill(dataTable);
 
@@ -68,14 +71,14 @@ namespace SQL_AdreseDB_Practica
         }
 
         public void SalvareAdrese(SqlConnection connection, int IdPersoana, TextBox Municipiu, TextBox Judet, TextBox Oras, TextBox Comuna, TextBox Sat, TextBox Strada,
-        TextBox Numar, TextBox Bloc, TextBox Scara)
+        TextBox Numar, TextBox Bloc, TextBox Scara, int cod)
         {
             Random random = new Random();
             int idA;
             do
             {
                 idA = random.Next(0, 9999);
-            } while (uniqueIdPersoana(idA) == false);
+            } while (uniqueIdAdrese(idA) == false);
 
             SqlCommand command = new SqlCommand("insert into AdreseTable values (@IdAdresa, @Municipiu, @Judet, @Oras, @Comuna, @Sat, @Strada, @Numar, @Bloc, @Scara, @IdPersoana)", connection);
             command.Parameters.AddWithValue("@IdAdresa", idA);
@@ -92,21 +95,29 @@ namespace SQL_AdreseDB_Practica
             connection.Open();
             int i = command.ExecuteNonQuery();
             if (i != 0)
-                MessageBox.Show("Este bine");
-            connection.Close();
-        }
-
-        private void afisareToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            using (SqlConnection connection = new SqlConnection("Data Source=DESKTOP-DVF30NR\\SQLEXPRESS;Initial Catalog=AdreseDB;Integrated Security=True"))
             {
-                connection.Open();
-                SqlDataAdapter sqlData = new SqlDataAdapter(comandaPersoane(), connection);
-                DataTable dataTable = new DataTable();
-                sqlData.Fill(dataTable);
-
-                dataGrid.DataSource = dataTable;
+                if(cod == 1)
+                    MessageBox.Show("Adresa de domiciliu a fost salvata");
+                if (cod == 2)
+                    MessageBox.Show("Locul nasterii a fost salvat");
+                if (cod == 3)
+                    MessageBox.Show("Adresa 1 a fost salvata");
+                if (cod == 4)
+                    MessageBox.Show("Adresa 2 a fost salvata");
             }
+            else
+            {
+                if (cod == 1)
+                    MessageBox.Show("Eroare la salarea adresei de domiciliu");
+                if (cod == 2)
+                    MessageBox.Show("Eroare la salarea locului de nastere");
+                if (cod == 3)
+                    MessageBox.Show("Eroare la salarea adresei 1");
+                if (cod == 4)
+                    MessageBox.Show("Eroare la salarea adresei 2");
+            }
+
+            connection.Close();
         }
 
         private void modificareToolStripMenuItem_Click(object sender, EventArgs e)
@@ -114,12 +125,38 @@ namespace SQL_AdreseDB_Practica
 
         }
 
-        private void stergereToolStripMenuItem_Click(object sender, EventArgs e)
+        private void dataGrid_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            StringBuilder obj = new StringBuilder();
+            
+            txtNume.Text = dataGrid.CurrentRow.Cells[1].Value.ToString();
+            txtPrenume.Text = dataGrid.CurrentRow.Cells[2].Value.ToString();
+            txtSex.Text = dataGrid.CurrentRow.Cells[3].Value.ToString();
+            txtDataNasterii.Text = dataGrid.CurrentRow.Cells[4].Value.ToString();
+            txtCNP.Text = dataGrid.CurrentRow.Cells[5].Value.ToString();
+
+
+            var idCautat = Convert.ToInt32(dataGrid.CurrentRow.Cells[0].Value.ToString());
+            //var info = (from AdreseTable in adreseContext.AdreseTables
+            //            where  Convert.ToInt32(idCautat) == AdreseTable.IdPersoana
+            //            select AdreseTable.IdAdresa).ToList<int>();
+            //var info2 = (from AdreseTable in adreseContext.AdreseTables
+            //            where Convert.ToInt32(idCautat) == AdreseTable.IdPersoana
+            //            select AdreseTable);
+
+            //foreach(var d in info2)
+            //{
+            //    MessageBox.Show(d..ToString());
+            //}
+            afisareAdrese(idCautat);
+            
+        }
+        private void Home_Load(object sender, EventArgs e)
         {
 
         }
 
-        private void adaugareToolStripMenuItem_Click(object sender, EventArgs e)
+        private void adaugarePersoaneToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SqlConnection connection = new SqlConnection("Data Source=DESKTOP-DVF30NR\\SQLEXPRESS;Initial Catalog=AdreseDB;Integrated Security=True");
 
@@ -128,7 +165,7 @@ namespace SQL_AdreseDB_Practica
             int idP;
             do
             {
-                idP = random.Next(0,9999);
+                idP = random.Next(0, 9999);
             } while (uniqueIdPersoana(idP) == false);
 
             command.Parameters.AddWithValue("@IdPersoana", idP);
@@ -143,42 +180,72 @@ namespace SQL_AdreseDB_Practica
 
             connection.Close();
             if (i != 0)
-                MessageBox.Show("Date salvate");
+                MessageBox.Show("Date personale au fost salvate");
             else
-                MessageBox.Show("Eroare");
-            SalvareAdrese(connection, idP, txtMunicipiuD, txtJudetD, txtOrasD, txtComunaD, txtSatD, txtStradaD, txtNumarD, txtBlocD, txtScaraD);
-            SalvareAdrese(connection, idP, txtMunicipiuN, txtJudetN, txtOrasN, txtComunaN, txtSatN, txtStradaN, txtNumarN, txtBlocN, txtScaraN);
-            SalvareAdrese(connection, idP, txtMunicipiu1, txtJudet1, txtOras1, txtComuna1, txtSat1, txtStrada1, txtNumar1, txtBloc1, txtScara1);
-            SalvareAdrese(connection, idP, txtMunicipiu2, txtJudet2, txtOras2, txtComuna2, txtSat2, txtStrada2, txtNumar2, txtBloc2, txtScara2);
+                MessageBox.Show("Eroare la salvarea datelor personale");
+            SalvareAdrese(connection, idP, txtMunicipiuD, txtJudetD, txtOrasD, txtComunaD, txtSatD, txtStradaD, txtNumarD, txtBlocD, txtScaraD, 1);
+            SalvareAdrese(connection, idP, txtMunicipiuN, txtJudetN, txtOrasN, txtComunaN, txtSatN, txtStradaN, txtNumarN, txtBlocN, txtScaraN, 2);
+            SalvareAdrese(connection, idP, txtMunicipiu1, txtJudet1, txtOras1, txtComuna1, txtSat1, txtStrada1, txtNumar1, txtBloc1, txtScara1, 3);
+            SalvareAdrese(connection, idP, txtMunicipiu2, txtJudet2, txtOras2, txtComuna2, txtSat2, txtStrada2, txtNumar2, txtBloc2, txtScara2, 4);
         }
 
-        private void dataGrid_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void listaPersoaneToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            StringBuilder obj = new StringBuilder();
-            
-            txtNume.Text = dataGrid.CurrentRow.Cells[1].Value.ToString();
-            txtPrenume.Text = dataGrid.CurrentRow.Cells[2].Value.ToString();
-            txtSex.Text = dataGrid.CurrentRow.Cells[3].Value.ToString();
-            txtDataNasterii.Text = dataGrid.CurrentRow.Cells[4].Value.ToString();
-            txtCNP.Text = dataGrid.CurrentRow.Cells[5].Value.ToString();
+            dataGrid.DataSource = null;
+            using (SqlConnection connection = new SqlConnection("Data Source=DESKTOP-DVF30NR\\SQLEXPRESS;Initial Catalog=AdreseDB;Integrated Security=True"))
+            {
+                connection.Open();
+                SqlDataAdapter sqlData = new SqlDataAdapter(comandaPersoane(), connection);
+                DataTable dataTable = new DataTable();
+                sqlData.Fill(dataTable);
 
-            var info = (from AdreseTable in adreseContext.AdreseTables
-                        where Convert.ToInt32(dataGrid.CurrentRow.Cells[0].Value.ToString()) == AdreseTable.IdPersoana
-                        select AdreseTable).ToList();
-            //foreach(int cod in info)
-            //{
-            //    var adresaCautata = (from AdreseTable in adreseContext.AdreseTables
-            //                         where cod == AdreseTable.IdAdresa
-            //                         select AdreseTable).FirstOrDefault();
-            //    MessageBox.Show(adresaCautata.ToString());
-
-            //}
-            DataTable tabelA = new DataTable();
-            
-            MessageBox.Show(info.ToString());
+                dataGrid.DataSource = dataTable;
+            }
         }
-        private void Home_Load(object sender, EventArgs e)
+
+        private void afisareAdrese(int i)
         {
+            dataGrid.DataSource = null;
+            using (SqlConnection connection = new SqlConnection("Data Source=DESKTOP-DVF30NR\\SQLEXPRESS;Initial Catalog=AdreseDB;Integrated Security=True"))
+            {
+                connection.Open();
+                SqlDataAdapter sqlData = new SqlDataAdapter(comandaAdrese(i), connection);
+                DataTable dataTable = new DataTable();
+                sqlData.Fill(dataTable);
+
+                dataGrid.DataSource = dataTable;
+            }
+        }
+        private void listaAdreseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            afisareAdrese(IDAdresaNespecificata);
+        }
+
+        private void stergereToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var idCautat = Convert.ToInt32(dataGrid.CurrentRow.Cells[0].Value.ToString());
+     
+            string comandaDeleteA = "DELETE FROM AdreseTable WHERE IdPersoana = " + idCautat;
+            using (SqlConnection connection = new SqlConnection("Data Source=DESKTOP-DVF30NR\\SQLEXPRESS;Initial Catalog=AdreseDB;Integrated Security=True"))
+            {
+                connection.Open();
+                SqlDataAdapter sqlData = new SqlDataAdapter(comandaDeleteA, connection);
+                DataTable dataTable = new DataTable();
+                sqlData.Fill(dataTable);
+                connection.Close();
+            }
+
+            string comandaDeleteP = "DELETE FROM PersoaneTable WHERE IdPersoana = " + idCautat;
+            using (SqlConnection connection = new SqlConnection("Data Source=DESKTOP-DVF30NR\\SQLEXPRESS;Initial Catalog=AdreseDB;Integrated Security=True"))
+            {
+                connection.Open();
+                SqlDataAdapter sqlData = new SqlDataAdapter(comandaDeleteP, connection);
+                DataTable dataTable = new DataTable();
+                sqlData.Fill(dataTable);
+                connection.Close();
+            }
+
+            
 
         }
     }
