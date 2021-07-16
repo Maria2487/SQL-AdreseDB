@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="AdreseDB" Class="AdreseDBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-DVF30NR\SQLEXPRESS;Initial Catalog=AdreseDB;Integrated Security=True" SettingsObjectName="SQL_AdreseDB_Practica.Properties.Settings" SettingsPropertyName="AdreseDBConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.AdreseTable" Member="AdreseTables">
+    <Type Name="AdreseTable">
+      <Column Name="IdAdresa" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Municipiu" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Judet" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Oras" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Comuna" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Sat" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Strada" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Numar" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="Bloc" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="Scara" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="IdPersoana" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="PersoaneTable_AdreseTable" Member="PersoaneTable" ThisKey="IdPersoana" OtherKey="IdPersoana" Type="PersoaneTable" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PersoaneTable" Member="PersoaneTables">
+    <Type Name="PersoaneTable">
+      <Column Name="IdPersoana" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Nume" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Prenume" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Sex" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="DataNasteri" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="CNP" Type="System.String" DbType="VarChar(13)" CanBeNull="true" />
+      <Association Name="PersoaneTable_AdreseTable" Member="AdreseTables" ThisKey="IdPersoana" OtherKey="IdPersoana" Type="AdreseTable" />
+    </Type>
+  </Table>
+</Database>

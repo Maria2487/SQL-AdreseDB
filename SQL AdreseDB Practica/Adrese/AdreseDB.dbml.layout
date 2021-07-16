@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="AdreseDB">
+  <DataContextMoniker Name="/AdreseDBDataContext" />
+  <nestedChildShapes>
+    <classShape Id="43ad670a-386f-4283-8fba-2c03afcb4a7b" absoluteBounds="4.75, 0.625, 2, 2.9247054036458331">
+      <DataClassMoniker Name="/AdreseDBDataContext/AdreseTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="fc8d27b1-5d86-4716-8115-89462f1530e3" absoluteBounds="4.765, 1.085, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="19928118-6012-44cf-b4ee-142ef449f140" absoluteBounds="0.625, 1.125, 2, 1.9631982421875">
+      <DataClassMoniker Name="/AdreseDBDataContext/PersoaneTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="92f4ce9e-118f-49aa-b46e-9b32c5128d4a" absoluteBounds="0.64000000000000012, 1.585, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.625 : 2.10659912109375); (4.75 : 2.10659912109375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/AdreseDBDataContext/PersoaneTable/PersoaneTable_AdreseTable" />
+      <nodes>
+        <classShapeMoniker Id="19928118-6012-44cf-b4ee-142ef449f140" />
+        <classShapeMoniker Id="43ad670a-386f-4283-8fba-2c03afcb4a7b" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>
