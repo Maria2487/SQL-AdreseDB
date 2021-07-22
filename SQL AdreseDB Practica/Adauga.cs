@@ -20,41 +20,44 @@ namespace SQL_AdreseDB_Practica
         public Adauga()
         {
             InitializeComponent();
-            connection = new SqlConnection("Data Source=DESKTOP-DVF30NR\\SQLEXPRESS;Initial Catalog=AdreseDB;Integrated Security=True");
             adreseContext = new AdreseDBDataContext();
+            connection = new SqlConnection("Data Source=DESKTOP-DVF30NR\\SQLEXPRESS;Initial Catalog=AdreseDB;Integrated Security=True");
         }
 
         private bool uniqueIdPersoana(int idc)
         {
-            using (connection)
-            {
-                connection.Open();
-                SqlDataAdapter sqlData = new SqlDataAdapter(comandaPersoane(), connection);
-                DataTable dataTable = new DataTable();
-                sqlData.Fill(dataTable);
+            connection.Open();
+            SqlDataAdapter sqlData = new SqlDataAdapter(comandaPersoane(), connection);
+            DataTable dataTable = new DataTable();
+            sqlData.Fill(dataTable);
 
-                foreach (DataRow dtRow in dataTable.Rows)
-                    if (dtRow[0].ToString() == idc.ToString())
-                        return false;
+            foreach (DataRow dtRow in dataTable.Rows)
+                if (dtRow[0].ToString() == idc.ToString())
+                {
+                    connection.Close();
+                    return false;
+                }
+            connection.Close();
 
-            }
             return true;
         }
 
         private bool uniqueIdAdrese(int idc)
         {
-            using (connection)
-            {
-                connection.Open();
-                SqlDataAdapter sqlData = new SqlDataAdapter(comandaAdrese(IDAdresaNespecificata), connection);
-                DataTable dataTable = new DataTable();
-                sqlData.Fill(dataTable);
 
-                foreach (DataRow dtRow in dataTable.Rows)
-                    if (dtRow[0].ToString() == idc.ToString())
-                        return false;
+            connection.Open();
+            SqlDataAdapter sqlData = new SqlDataAdapter(comandaAdrese(IDAdresaNespecificata), connection);
+            DataTable dataTable = new DataTable();
+            sqlData.Fill(dataTable);
 
-            }
+            foreach (DataRow dtRow in dataTable.Rows)
+                if (dtRow[0].ToString() == idc.ToString())
+                {
+                    connection.Close();
+                    return false;
+                }
+            connection.Close();
+
             return true;
         }
 
@@ -111,6 +114,27 @@ namespace SQL_AdreseDB_Practica
         private void salveazaInregistrareaToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+            if(VerificareNume(txtNume.Text.Trim().ToUpper()) == false)
+            {
+                MessageBox.Show("Casuta pentru nume nu poate fi goala sau sa contina cifre");
+                return;
+            }
+            if (VerificareNume(txtPrenume.Text.Trim().ToUpper()) == false)
+            {
+                MessageBox.Show("Casuta pentru prenume nu poate fi goala sau sa contina cifre");
+                return;
+            }
+            if (VerificareCNP(txtCNP.Text.Trim()) ==  false)
+            {
+                return;
+            }
+            if(VerificareSEX(txtSex.Text.Trim().ToUpper()) == false)
+            {
+                return;
+            }
+
+
+
             SqlCommand command = new SqlCommand("insert into PersoaneTable values (@IdPersoana, @Nume, @Prenume, @Sex, @DataNasteri, @CNP)", connection);
             Random random = new Random();
             int idP;
@@ -125,8 +149,8 @@ namespace SQL_AdreseDB_Practica
             command.Parameters.AddWithValue("@Sex", txtSex.Text.Trim().ToUpper());
             command.Parameters.AddWithValue("@DataNasteri", txtDataNasterii.Text.Trim().ToUpper());
             command.Parameters.AddWithValue("@CNP", txtCNP.Text.Trim().ToUpper());
-
             connection.Open();
+            
             int i = command.ExecuteNonQuery();
 
             connection.Close();
