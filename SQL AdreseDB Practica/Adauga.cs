@@ -1,22 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using SQL_AdreseDB_Practica.Adrese;
+using System;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Data.SqlClient;
-using SQL_AdreseDB_Practica.Adrese;
+using System.Windows.Forms;
 using static SQL_AdreseDB_Practica.Functii;
 
 namespace SQL_AdreseDB_Practica
 {
     public partial class Adauga : Form
     {
-        AdreseDBDataContext adreseContext;
-        SqlConnection connection;
+        private AdreseDBDataContext adreseContext;
+        private SqlConnection connection;
+
         public Adauga()
         {
             InitializeComponent();
@@ -44,7 +39,6 @@ namespace SQL_AdreseDB_Practica
 
         private bool uniqueIdAdrese(int idc)
         {
-
             connection.Open();
             SqlDataAdapter sqlData = new SqlDataAdapter(comandaAdrese(IDAdresaNespecificata), connection);
             DataTable dataTable = new DataTable();
@@ -113,8 +107,7 @@ namespace SQL_AdreseDB_Practica
 
         private void salveazaInregistrareaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
-            if(VerificareNume(txtNume.Text.Trim().ToUpper()) == false)
+            if (VerificareNume(txtNume.Text.Trim().ToUpper()) == false)
             {
                 MessageBox.Show("Casuta pentru nume nu poate fi goala sau sa contina cifre");
                 return;
@@ -124,16 +117,19 @@ namespace SQL_AdreseDB_Practica
                 MessageBox.Show("Casuta pentru prenume nu poate fi goala sau sa contina cifre");
                 return;
             }
-            if (VerificareCNP(txtCNP.Text.Trim()) ==  false)
+            if (VerificareCNP(txtCNP.Text.Trim()) == false)
             {
                 return;
             }
-            if(VerificareSEX(txtSex.Text.Trim().ToUpper()) == false)
+            if (VerificareSEX(txtSex.Text.Trim().ToUpper()) == false)
             {
                 return;
             }
-
-
+            if(dateTimePicker.Value > DateTime.Now)
+            {
+                MessageBox.Show("Data nasterii a fost incorect introdusa");
+                return;
+            }    
 
             SqlCommand command = new SqlCommand("insert into PersoaneTable values (@IdPersoana, @Nume, @Prenume, @Sex, @DataNasteri, @CNP)", connection);
             Random random = new Random();
@@ -143,14 +139,19 @@ namespace SQL_AdreseDB_Practica
                 idP = random.Next(0, 9999);
             } while (uniqueIdPersoana(idP) == false);
 
+            string time = dateTimePicker.Value.ToString();
+            string[] dateTime1 = time.Split('/');
+            string[] dateTime2 = dateTime1[2].Split(' ');
+            string data = dateTime2[0] + "/" + dateTime1[0] + "/" + dateTime1[1];
+
             command.Parameters.AddWithValue("@IdPersoana", idP);
             command.Parameters.AddWithValue("@Nume", txtNume.Text.Trim().ToUpper());
             command.Parameters.AddWithValue("@Prenume", txtPrenume.Text.Trim().ToUpper());
             command.Parameters.AddWithValue("@Sex", txtSex.Text.Trim().ToUpper());
-            command.Parameters.AddWithValue("@DataNasteri", txtDataNasterii.Text.Trim().ToUpper());
+            command.Parameters.AddWithValue("@DataNasteri", data);
             command.Parameters.AddWithValue("@CNP", txtCNP.Text.Trim().ToUpper());
             connection.Open();
-            
+
             int i = command.ExecuteNonQuery();
 
             connection.Close();
@@ -174,6 +175,5 @@ namespace SQL_AdreseDB_Practica
                     a.Text = string.Empty;
             }
         }
-
     }
 }

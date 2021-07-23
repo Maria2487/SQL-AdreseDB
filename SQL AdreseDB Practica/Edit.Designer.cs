@@ -75,7 +75,7 @@ namespace SQL_AdreseDB_Practica
             // 
             // txtNumeEdit
             // 
-            this.txtNumeEdit.Location = new System.Drawing.Point(458, 67);
+            this.txtNumeEdit.Location = new System.Drawing.Point(515, 72);
             this.txtNumeEdit.Name = "txtNumeEdit";
             this.txtNumeEdit.Size = new System.Drawing.Size(100, 22);
             this.txtNumeEdit.TabIndex = 129;
@@ -83,27 +83,28 @@ namespace SQL_AdreseDB_Practica
             // labelCautaEdit
             // 
             this.labelCautaEdit.AutoSize = true;
-            this.labelCautaEdit.Location = new System.Drawing.Point(252, 69);
+            this.labelCautaEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCautaEdit.Location = new System.Drawing.Point(188, 72);
             this.labelCautaEdit.Name = "labelCautaEdit";
-            this.labelCautaEdit.Size = new System.Drawing.Size(191, 17);
+            this.labelCautaEdit.Size = new System.Drawing.Size(284, 20);
             this.labelCautaEdit.TabIndex = 130;
-            this.labelCautaEdit.Text = "Introduceti numele persoanei";
+            this.labelCautaEdit.Text = "Introduceti numele persoanei cautate";
             // 
             // buttonEdit
             // 
             this.buttonEdit.AutoSize = true;
-            this.buttonEdit.Location = new System.Drawing.Point(796, 101);
+            this.buttonEdit.Location = new System.Drawing.Point(796, 88);
             this.buttonEdit.Name = "buttonEdit";
-            this.buttonEdit.Size = new System.Drawing.Size(198, 27);
+            this.buttonEdit.Size = new System.Drawing.Size(198, 40);
             this.buttonEdit.TabIndex = 131;
             this.buttonEdit.UseVisualStyleBackColor = true;
             this.buttonEdit.Click += new System.EventHandler(this.buttonStergerePersoana_Click);
             // 
             // buttonCautare
             // 
-            this.buttonCautare.Location = new System.Drawing.Point(586, 66);
+            this.buttonCautare.Location = new System.Drawing.Point(641, 68);
             this.buttonCautare.Name = "buttonCautare";
-            this.buttonCautare.Size = new System.Drawing.Size(75, 23);
+            this.buttonCautare.Size = new System.Drawing.Size(80, 30);
             this.buttonCautare.TabIndex = 132;
             this.buttonCautare.Text = "Cauta";
             this.buttonCautare.UseVisualStyleBackColor = true;

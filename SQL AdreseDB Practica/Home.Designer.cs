@@ -47,14 +47,14 @@ namespace SQL_AdreseDB_Practica
             this.afisareToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1105, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1105, 30);
             this.menuStrip1.TabIndex = 10;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // afisareToolStripMenuItem
             // 
             this.afisareToolStripMenuItem.Name = "afisareToolStripMenuItem";
-            this.afisareToolStripMenuItem.Size = new System.Drawing.Size(192, 24);
+            this.afisareToolStripMenuItem.Size = new System.Drawing.Size(192, 26);
             this.afisareToolStripMenuItem.Text = "Vizualizare Lista Persoane";
             this.afisareToolStripMenuItem.Click += new System.EventHandler(this.afisareToolStripMenuItem_Click);
             // 
@@ -64,9 +64,9 @@ namespace SQL_AdreseDB_Practica
             this.PanelInregistrare.Controls.Add(this.buttonAdauga);
             this.PanelInregistrare.Controls.Add(this.dataGridHome);
             this.PanelInregistrare.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PanelInregistrare.Location = new System.Drawing.Point(0, 28);
+            this.PanelInregistrare.Location = new System.Drawing.Point(0, 30);
             this.PanelInregistrare.Name = "PanelInregistrare";
-            this.PanelInregistrare.Size = new System.Drawing.Size(1105, 497);
+            this.PanelInregistrare.Size = new System.Drawing.Size(1105, 495);
             this.PanelInregistrare.TabIndex = 11;
             // 
             // buttonModificare

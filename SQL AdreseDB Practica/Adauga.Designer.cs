@@ -60,7 +60,6 @@ namespace SQL_AdreseDB_Practica
             this.label10 = new System.Windows.Forms.Label();
             this.txtMunicipiuN = new System.Windows.Forms.TextBox();
             this.labelDN = new System.Windows.Forms.Label();
-            this.txtDataNasterii = new System.Windows.Forms.TextBox();
             this.labelScara = new System.Windows.Forms.Label();
             this.labelBloc = new System.Windows.Forms.Label();
             this.labelNumar = new System.Windows.Forms.Label();
@@ -109,6 +108,7 @@ namespace SQL_AdreseDB_Practica
             this.label20 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.labelSex2 = new System.Windows.Forms.Label();
+            this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -258,56 +258,56 @@ namespace SQL_AdreseDB_Practica
             // 
             // txtScaraN
             // 
-            this.txtScaraN.Location = new System.Drawing.Point(985, 253);
+            this.txtScaraN.Location = new System.Drawing.Point(985, 254);
             this.txtScaraN.Name = "txtScaraN";
             this.txtScaraN.Size = new System.Drawing.Size(100, 22);
             this.txtScaraN.TabIndex = 135;
             // 
             // txtBlocN
             // 
-            this.txtBlocN.Location = new System.Drawing.Point(879, 253);
+            this.txtBlocN.Location = new System.Drawing.Point(879, 254);
             this.txtBlocN.Name = "txtBlocN";
             this.txtBlocN.Size = new System.Drawing.Size(100, 22);
             this.txtBlocN.TabIndex = 134;
             // 
             // txtNumarN
             // 
-            this.txtNumarN.Location = new System.Drawing.Point(773, 253);
+            this.txtNumarN.Location = new System.Drawing.Point(773, 254);
             this.txtNumarN.Name = "txtNumarN";
             this.txtNumarN.Size = new System.Drawing.Size(100, 22);
             this.txtNumarN.TabIndex = 133;
             // 
             // txtStradaN
             // 
-            this.txtStradaN.Location = new System.Drawing.Point(985, 188);
+            this.txtStradaN.Location = new System.Drawing.Point(985, 189);
             this.txtStradaN.Name = "txtStradaN";
             this.txtStradaN.Size = new System.Drawing.Size(100, 22);
             this.txtStradaN.TabIndex = 132;
             // 
             // txtSatN
             // 
-            this.txtSatN.Location = new System.Drawing.Point(879, 188);
+            this.txtSatN.Location = new System.Drawing.Point(879, 189);
             this.txtSatN.Name = "txtSatN";
             this.txtSatN.Size = new System.Drawing.Size(100, 22);
             this.txtSatN.TabIndex = 131;
             // 
             // txtComunaN
             // 
-            this.txtComunaN.Location = new System.Drawing.Point(773, 188);
+            this.txtComunaN.Location = new System.Drawing.Point(773, 189);
             this.txtComunaN.Name = "txtComunaN";
             this.txtComunaN.Size = new System.Drawing.Size(100, 22);
             this.txtComunaN.TabIndex = 130;
             // 
             // txtOrasN
             // 
-            this.txtOrasN.Location = new System.Drawing.Point(985, 123);
+            this.txtOrasN.Location = new System.Drawing.Point(985, 124);
             this.txtOrasN.Name = "txtOrasN";
             this.txtOrasN.Size = new System.Drawing.Size(100, 22);
             this.txtOrasN.TabIndex = 129;
             // 
             // txtJudetN
             // 
-            this.txtJudetN.Location = new System.Drawing.Point(879, 123);
+            this.txtJudetN.Location = new System.Drawing.Point(879, 124);
             this.txtJudetN.Name = "txtJudetN";
             this.txtJudetN.Size = new System.Drawing.Size(100, 22);
             this.txtJudetN.TabIndex = 128;
@@ -315,7 +315,7 @@ namespace SQL_AdreseDB_Practica
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(876, 72);
+            this.label10.Location = new System.Drawing.Point(876, 73);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(99, 17);
             this.label10.TabIndex = 127;
@@ -323,7 +323,7 @@ namespace SQL_AdreseDB_Practica
             // 
             // txtMunicipiuN
             // 
-            this.txtMunicipiuN.Location = new System.Drawing.Point(773, 123);
+            this.txtMunicipiuN.Location = new System.Drawing.Point(773, 124);
             this.txtMunicipiuN.Name = "txtMunicipiuN";
             this.txtMunicipiuN.Size = new System.Drawing.Size(100, 22);
             this.txtMunicipiuN.TabIndex = 126;
@@ -337,17 +337,10 @@ namespace SQL_AdreseDB_Practica
             this.labelDN.TabIndex = 124;
             this.labelDN.Text = "Data Nasterii";
             // 
-            // txtDataNasterii
-            // 
-            this.txtDataNasterii.Location = new System.Drawing.Point(137, 250);
-            this.txtDataNasterii.Name = "txtDataNasterii";
-            this.txtDataNasterii.Size = new System.Drawing.Size(100, 22);
-            this.txtDataNasterii.TabIndex = 123;
-            // 
             // labelScara
             // 
             this.labelScara.AutoSize = true;
-            this.labelScara.Location = new System.Drawing.Point(587, 230);
+            this.labelScara.Location = new System.Drawing.Point(647, 234);
             this.labelScara.Name = "labelScara";
             this.labelScara.Size = new System.Drawing.Size(45, 17);
             this.labelScara.TabIndex = 122;
@@ -356,7 +349,7 @@ namespace SQL_AdreseDB_Practica
             // labelBloc
             // 
             this.labelBloc.AutoSize = true;
-            this.labelBloc.Location = new System.Drawing.Point(486, 230);
+            this.labelBloc.Location = new System.Drawing.Point(546, 234);
             this.labelBloc.Name = "labelBloc";
             this.labelBloc.Size = new System.Drawing.Size(35, 17);
             this.labelBloc.TabIndex = 121;
@@ -365,7 +358,7 @@ namespace SQL_AdreseDB_Practica
             // labelNumar
             // 
             this.labelNumar.AutoSize = true;
-            this.labelNumar.Location = new System.Drawing.Point(371, 230);
+            this.labelNumar.Location = new System.Drawing.Point(431, 234);
             this.labelNumar.Name = "labelNumar";
             this.labelNumar.Size = new System.Drawing.Size(50, 17);
             this.labelNumar.TabIndex = 120;
@@ -374,7 +367,7 @@ namespace SQL_AdreseDB_Practica
             // labelStrada
             // 
             this.labelStrada.AutoSize = true;
-            this.labelStrada.Location = new System.Drawing.Point(584, 167);
+            this.labelStrada.Location = new System.Drawing.Point(644, 171);
             this.labelStrada.Name = "labelStrada";
             this.labelStrada.Size = new System.Drawing.Size(50, 17);
             this.labelStrada.TabIndex = 119;
@@ -383,7 +376,7 @@ namespace SQL_AdreseDB_Practica
             // labelSat
             // 
             this.labelSat.AutoSize = true;
-            this.labelSat.Location = new System.Drawing.Point(488, 167);
+            this.labelSat.Location = new System.Drawing.Point(548, 171);
             this.labelSat.Name = "labelSat";
             this.labelSat.Size = new System.Drawing.Size(29, 17);
             this.labelSat.TabIndex = 118;
@@ -392,7 +385,7 @@ namespace SQL_AdreseDB_Practica
             // labelComuna
             // 
             this.labelComuna.AutoSize = true;
-            this.labelComuna.Location = new System.Drawing.Point(370, 167);
+            this.labelComuna.Location = new System.Drawing.Point(430, 171);
             this.labelComuna.Name = "labelComuna";
             this.labelComuna.Size = new System.Drawing.Size(60, 17);
             this.labelComuna.TabIndex = 117;
@@ -401,7 +394,7 @@ namespace SQL_AdreseDB_Practica
             // labelOras
             // 
             this.labelOras.AutoSize = true;
-            this.labelOras.Location = new System.Drawing.Point(590, 102);
+            this.labelOras.Location = new System.Drawing.Point(650, 106);
             this.labelOras.Name = "labelOras";
             this.labelOras.Size = new System.Drawing.Size(39, 17);
             this.labelOras.TabIndex = 116;
@@ -410,7 +403,7 @@ namespace SQL_AdreseDB_Practica
             // labelJudet
             // 
             this.labelJudet.AutoSize = true;
-            this.labelJudet.Location = new System.Drawing.Point(483, 102);
+            this.labelJudet.Location = new System.Drawing.Point(543, 106);
             this.labelJudet.Name = "labelJudet";
             this.labelJudet.Size = new System.Drawing.Size(43, 17);
             this.labelJudet.TabIndex = 115;
@@ -419,7 +412,7 @@ namespace SQL_AdreseDB_Practica
             // labelMunicipiu
             // 
             this.labelMunicipiu.AutoSize = true;
-            this.labelMunicipiu.Location = new System.Drawing.Point(364, 102);
+            this.labelMunicipiu.Location = new System.Drawing.Point(424, 106);
             this.labelMunicipiu.Name = "labelMunicipiu";
             this.labelMunicipiu.Size = new System.Drawing.Size(67, 17);
             this.labelMunicipiu.TabIndex = 114;
@@ -427,56 +420,56 @@ namespace SQL_AdreseDB_Practica
             // 
             // txtScaraD
             // 
-            this.txtScaraD.Location = new System.Drawing.Point(561, 250);
+            this.txtScaraD.Location = new System.Drawing.Point(621, 254);
             this.txtScaraD.Name = "txtScaraD";
             this.txtScaraD.Size = new System.Drawing.Size(100, 22);
             this.txtScaraD.TabIndex = 113;
             // 
             // txtBlocD
             // 
-            this.txtBlocD.Location = new System.Drawing.Point(455, 250);
+            this.txtBlocD.Location = new System.Drawing.Point(515, 254);
             this.txtBlocD.Name = "txtBlocD";
             this.txtBlocD.Size = new System.Drawing.Size(100, 22);
             this.txtBlocD.TabIndex = 112;
             // 
             // txtNumarD
             // 
-            this.txtNumarD.Location = new System.Drawing.Point(349, 250);
+            this.txtNumarD.Location = new System.Drawing.Point(409, 254);
             this.txtNumarD.Name = "txtNumarD";
             this.txtNumarD.Size = new System.Drawing.Size(100, 22);
             this.txtNumarD.TabIndex = 111;
             // 
             // txtStradaD
             // 
-            this.txtStradaD.Location = new System.Drawing.Point(561, 187);
+            this.txtStradaD.Location = new System.Drawing.Point(621, 191);
             this.txtStradaD.Name = "txtStradaD";
             this.txtStradaD.Size = new System.Drawing.Size(100, 22);
             this.txtStradaD.TabIndex = 110;
             // 
             // txtSatD
             // 
-            this.txtSatD.Location = new System.Drawing.Point(455, 187);
+            this.txtSatD.Location = new System.Drawing.Point(515, 191);
             this.txtSatD.Name = "txtSatD";
             this.txtSatD.Size = new System.Drawing.Size(100, 22);
             this.txtSatD.TabIndex = 109;
             // 
             // txtComunaD
             // 
-            this.txtComunaD.Location = new System.Drawing.Point(350, 187);
+            this.txtComunaD.Location = new System.Drawing.Point(410, 191);
             this.txtComunaD.Name = "txtComunaD";
             this.txtComunaD.Size = new System.Drawing.Size(100, 22);
             this.txtComunaD.TabIndex = 108;
             // 
             // txtOrasD
             // 
-            this.txtOrasD.Location = new System.Drawing.Point(561, 122);
+            this.txtOrasD.Location = new System.Drawing.Point(621, 126);
             this.txtOrasD.Name = "txtOrasD";
             this.txtOrasD.Size = new System.Drawing.Size(100, 22);
             this.txtOrasD.TabIndex = 107;
             // 
             // txtJudetD
             // 
-            this.txtJudetD.Location = new System.Drawing.Point(455, 122);
+            this.txtJudetD.Location = new System.Drawing.Point(515, 126);
             this.txtJudetD.Name = "txtJudetD";
             this.txtJudetD.Size = new System.Drawing.Size(100, 22);
             this.txtJudetD.TabIndex = 106;
@@ -484,7 +477,7 @@ namespace SQL_AdreseDB_Practica
             // labelDomiciliu
             // 
             this.labelDomiciliu.AutoSize = true;
-            this.labelDomiciliu.Location = new System.Drawing.Point(460, 74);
+            this.labelDomiciliu.Location = new System.Drawing.Point(520, 78);
             this.labelDomiciliu.Name = "labelDomiciliu";
             this.labelDomiciliu.Size = new System.Drawing.Size(77, 17);
             this.labelDomiciliu.TabIndex = 105;
@@ -492,7 +485,7 @@ namespace SQL_AdreseDB_Practica
             // 
             // txtMunicipiuD
             // 
-            this.txtMunicipiuD.Location = new System.Drawing.Point(349, 122);
+            this.txtMunicipiuD.Location = new System.Drawing.Point(409, 126);
             this.txtMunicipiuD.Name = "txtMunicipiuD";
             this.txtMunicipiuD.Size = new System.Drawing.Size(100, 22);
             this.txtMunicipiuD.TabIndex = 104;
@@ -519,14 +512,14 @@ namespace SQL_AdreseDB_Practica
             // 
             this.txtSex.Location = new System.Drawing.Point(137, 210);
             this.txtSex.Name = "txtSex";
-            this.txtSex.Size = new System.Drawing.Size(100, 22);
+            this.txtSex.Size = new System.Drawing.Size(201, 22);
             this.txtSex.TabIndex = 101;
             // 
             // txtCNP
             // 
             this.txtCNP.Location = new System.Drawing.Point(137, 169);
             this.txtCNP.Name = "txtCNP";
-            this.txtCNP.Size = new System.Drawing.Size(100, 22);
+            this.txtCNP.Size = new System.Drawing.Size(201, 22);
             this.txtCNP.TabIndex = 100;
             // 
             // labelPrenume
@@ -551,14 +544,14 @@ namespace SQL_AdreseDB_Practica
             // 
             this.txtPrenume.Location = new System.Drawing.Point(137, 129);
             this.txtPrenume.Name = "txtPrenume";
-            this.txtPrenume.Size = new System.Drawing.Size(100, 22);
+            this.txtPrenume.Size = new System.Drawing.Size(201, 22);
             this.txtPrenume.TabIndex = 97;
             // 
             // txtNume
             // 
             this.txtNume.Location = new System.Drawing.Point(137, 90);
             this.txtNume.Name = "txtNume";
-            this.txtNume.Size = new System.Drawing.Size(100, 22);
+            this.txtNume.Size = new System.Drawing.Size(201, 22);
             this.txtNume.TabIndex = 96;
             // 
             // menuStrip1
@@ -575,14 +568,14 @@ namespace SQL_AdreseDB_Practica
             // salveazaInregistrareaToolStripMenuItem
             // 
             this.salveazaInregistrareaToolStripMenuItem.Name = "salveazaInregistrareaToolStripMenuItem";
-            this.salveazaInregistrareaToolStripMenuItem.Size = new System.Drawing.Size(168, 26);
+            this.salveazaInregistrareaToolStripMenuItem.Size = new System.Drawing.Size(168, 24);
             this.salveazaInregistrareaToolStripMenuItem.Text = "Salveaza inregistrarea";
             this.salveazaInregistrareaToolStripMenuItem.Click += new System.EventHandler(this.salveazaInregistrareaToolStripMenuItem_Click);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(1017, 103);
+            this.label3.Location = new System.Drawing.Point(1017, 104);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(39, 17);
             this.label3.TabIndex = 159;
@@ -591,7 +584,7 @@ namespace SQL_AdreseDB_Practica
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(910, 103);
+            this.label4.Location = new System.Drawing.Point(910, 104);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(43, 17);
             this.label4.TabIndex = 158;
@@ -600,7 +593,7 @@ namespace SQL_AdreseDB_Practica
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(791, 103);
+            this.label5.Location = new System.Drawing.Point(791, 104);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(67, 17);
             this.label5.TabIndex = 157;
@@ -609,7 +602,7 @@ namespace SQL_AdreseDB_Practica
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(1006, 168);
+            this.label6.Location = new System.Drawing.Point(1006, 169);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(50, 17);
             this.label6.TabIndex = 162;
@@ -618,7 +611,7 @@ namespace SQL_AdreseDB_Practica
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(910, 168);
+            this.label7.Location = new System.Drawing.Point(910, 169);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(29, 17);
             this.label7.TabIndex = 161;
@@ -627,7 +620,7 @@ namespace SQL_AdreseDB_Practica
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(792, 168);
+            this.label8.Location = new System.Drawing.Point(792, 169);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(60, 17);
             this.label8.TabIndex = 160;
@@ -636,7 +629,7 @@ namespace SQL_AdreseDB_Practica
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(1011, 231);
+            this.label9.Location = new System.Drawing.Point(1011, 232);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(45, 17);
             this.label9.TabIndex = 165;
@@ -645,7 +638,7 @@ namespace SQL_AdreseDB_Practica
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(910, 231);
+            this.label11.Location = new System.Drawing.Point(910, 232);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(35, 17);
             this.label11.TabIndex = 164;
@@ -654,7 +647,7 @@ namespace SQL_AdreseDB_Practica
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(795, 231);
+            this.label12.Location = new System.Drawing.Point(795, 232);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(50, 17);
             this.label12.TabIndex = 163;
@@ -750,11 +743,19 @@ namespace SQL_AdreseDB_Practica
             this.labelSex2.TabIndex = 175;
             this.labelSex2.Text = "(F/M/O)";
             // 
+            // dateTimePicker
+            // 
+            this.dateTimePicker.Location = new System.Drawing.Point(138, 252);
+            this.dateTimePicker.Name = "dateTimePicker";
+            this.dateTimePicker.Size = new System.Drawing.Size(200, 22);
+            this.dateTimePicker.TabIndex = 176;
+            // 
             // Adauga
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1119, 486);
+            this.Controls.Add(this.dateTimePicker);
             this.Controls.Add(this.labelSex2);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.label20);
@@ -805,7 +806,6 @@ namespace SQL_AdreseDB_Practica
             this.Controls.Add(this.label10);
             this.Controls.Add(this.txtMunicipiuN);
             this.Controls.Add(this.labelDN);
-            this.Controls.Add(this.txtDataNasterii);
             this.Controls.Add(this.labelScara);
             this.Controls.Add(this.labelBloc);
             this.Controls.Add(this.labelNumar);
@@ -878,7 +878,6 @@ namespace SQL_AdreseDB_Practica
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox txtMunicipiuN;
         private System.Windows.Forms.Label labelDN;
-        private System.Windows.Forms.TextBox txtDataNasterii;
         private System.Windows.Forms.Label labelScara;
         private System.Windows.Forms.Label labelBloc;
         private System.Windows.Forms.Label labelNumar;
@@ -927,5 +926,6 @@ namespace SQL_AdreseDB_Practica
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label labelSex2;
+        private System.Windows.Forms.DateTimePicker dateTimePicker;
     }
 }

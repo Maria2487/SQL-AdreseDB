@@ -1,24 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using SQL_AdreseDB_Practica.Adrese;
+using System;
 using System.Data;
 using System.Data.SqlClient;
-using SQL_AdreseDB_Practica.Adrese;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace SQL_AdreseDB_Practica
 {
-    class Functii
+    internal class Functii
     {
         public static int IDAdresaNespecificata = -1;
-        AdreseDBDataContext adreseContext;
+        private AdreseDBDataContext adreseContext;
+
         public static string comandaPersoane()
         {
             string com = "SELECT * FROM PersoaneTable";
             return com;
         }
+
         public static string comandaAdrese(int id)
         {
             if (id != IDAdresaNespecificata)
@@ -42,7 +41,11 @@ namespace SQL_AdreseDB_Practica
         public static bool VerificareCNP(string cnp)
         {
             if (string.IsNullOrEmpty(cnp))
+            {
+                MessageBox.Show("CNP-ul nu a fost introdus");
                 return false;
+            }
+               
             if (cnp.Length == 13)
             {
                 foreach (char c in cnp)
@@ -72,10 +75,10 @@ namespace SQL_AdreseDB_Practica
         {
             if (sex != "F" && sex != "M" && sex != "O")
             {
-                MessageBox.Show("Sexul a fost incorect specificat");
+                MessageBox.Show("Sexul nu a fost introdus corect");
                 return false;
             }
-                
+
             return true;
         }
 
@@ -85,7 +88,7 @@ namespace SQL_AdreseDB_Practica
             {
                 return false;
             }
-                
+
             foreach (char c in str)
             {
                 if (Char.IsDigit(c))
@@ -95,6 +98,5 @@ namespace SQL_AdreseDB_Practica
             }
             return true;
         }
-
     }
 }

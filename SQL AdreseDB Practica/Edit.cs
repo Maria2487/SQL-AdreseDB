@@ -1,29 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using SQL_AdreseDB_Practica.Adrese;
+using System;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Data.SqlClient;
-using SQL_AdreseDB_Practica.Adrese;
+using System.Linq;
+using System.Windows.Forms;
 using static SQL_AdreseDB_Practica.Functii;
 
 namespace SQL_AdreseDB_Practica
 {
     public partial class FormEdit : Form
     {
-        AdreseDBDataContext adreseContext;
-        SqlConnection connection;
+        private AdreseDBDataContext adreseContext;
+        private SqlConnection connection;
+
         public FormEdit()
         {
             InitializeComponent();
+            adreseContext = new AdreseDBDataContext();
             connection = new SqlConnection("Data Source=DESKTOP-DVF30NR\\SQLEXPRESS;Initial Catalog=AdreseDB;Integrated Security=True");
             afisarePersoane(connection, dataGridHome);
             buttonEdit.Visible = false;
-            
         }
 
         private void dataGrid_CellValueChanged(object sender, DataGridViewCellEventArgs e)
@@ -39,12 +35,7 @@ namespace SQL_AdreseDB_Practica
                 var editSex = this.dataGridHome.Rows[e.RowIndex].Cells["Sex"];
                 var newSex = editSex.Value.ToString().Trim().ToUpper();
 
-                var editDataNasteri = this.dataGridHome.Rows[e.RowIndex].Cells["DataNasteri"];
-                var newDataNasteri = editDataNasteri.Value.ToString().ToUpper();
-
-
                 var PersoanaId = Convert.ToInt32(this.dataGridHome.Rows[e.RowIndex].Cells[0].Value.ToString().ToUpper());
-
 
                 if (VerificareNume(newNume) == false)
                 {
@@ -71,15 +62,12 @@ namespace SQL_AdreseDB_Practica
                     newPrenume = "NULL";
                 if (newSex is null)
                     newSex = "NULL";
-                if (newDataNasteri is null)
-                    newDataNasteri = "NULL";
 
-                SqlCommand command = new SqlCommand("update PersoaneTable set Nume = @Nume, Prenume = @Prenume, Sex = @Sex, DataNasteri = @DataNasteri where IdPersoana = @IdPersoana", connection);
+                SqlCommand command = new SqlCommand("update PersoaneTable set Nume = @Nume, Prenume = @Prenume, Sex = @Sex, where IdPersoana = @IdPersoana", connection);
                 command.Parameters.AddWithValue("@IdPersoana", PersoanaId);
                 command.Parameters.AddWithValue("@Nume", newNume);
                 command.Parameters.AddWithValue("@Prenume", newPrenume);
                 command.Parameters.AddWithValue("@Sex", newSex);
-                command.Parameters.AddWithValue("@DataNasteri", newDataNasteri);
 
                 connection.Open();
                 command.ExecuteNonQuery();
@@ -177,19 +165,15 @@ namespace SQL_AdreseDB_Practica
             afisareAdrese(idCautat);
         }
 
-
         private void listaPersoaneToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             dataGridHome.DataSource = null;
-            using (connection)
-            {
-                connection.Open();
-                SqlDataAdapter sqlData = new SqlDataAdapter(comandaPersoane(), connection);
-                DataTable dataTable = new DataTable();
-                sqlData.Fill(dataTable);
-
-                dataGridHome.DataSource = dataTable;
-            }
+            connection.Open();
+            SqlDataAdapter sqlData = new SqlDataAdapter(comandaPersoane(), connection);
+            DataTable dataTable = new DataTable();
+            sqlData.Fill(dataTable);
+            connection.Close();
+            dataGridHome.DataSource = dataTable;
             buttonEdit.Visible = false;
         }
 
@@ -221,21 +205,21 @@ namespace SQL_AdreseDB_Practica
                 var idCautat = Convert.ToInt32(dataGridHome.CurrentRow.Cells[0].Value.ToString());
 
                 string comandaDeleteA = "DELETE FROM AdreseTable WHERE IdPersoana = " + idCautat;
-                    connection.Open();
-                    SqlDataAdapter sqlData = new SqlDataAdapter(comandaDeleteA, connection);
-                    DataTable dataTable = new DataTable();
-                    sqlData.Fill(dataTable);
-                    connection.Close();
+                connection.Open();
+                SqlDataAdapter sqlData = new SqlDataAdapter(comandaDeleteA, connection);
+                DataTable dataTable = new DataTable();
+                sqlData.Fill(dataTable);
+                connection.Close();
 
                 string comandaDeleteP = "DELETE FROM PersoaneTable WHERE IdPersoana = " + idCautat;
 
-                    connection.Open();
-                    sqlData = new SqlDataAdapter(comandaDeleteP, connection);
-                    dataTable = new DataTable();
-                    sqlData.Fill(dataTable);
-                    connection.Close();
+                connection.Open();
+                sqlData = new SqlDataAdapter(comandaDeleteP, connection);
+                dataTable = new DataTable();
+                sqlData.Fill(dataTable);
+                connection.Close();
 
-                afisarePersoane(connection,dataGridHome);
+                afisarePersoane(connection, dataGridHome);
             }
             else
             {
